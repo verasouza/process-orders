@@ -19,9 +19,9 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping("/read")
-    public ResponseEntity<List<UserOrder>> getRecords(){
-        List<UserOrder> orderList = orderService.readOrdersFromFile("src/main/resources/data/data_1.txt");
-        return ResponseEntity.ok(orderList);
+    public ResponseEntity getRecords(){
+        orderService.readOrdersFromFile("src/main/resources/data/data_1.txt");
+        return ResponseEntity.ok().build();
     }
 
 
