@@ -1,13 +1,14 @@
 package com.vsouza.processorders.controllers;
 
+import com.vsouza.processorders.dto.model.FilterOrdersRequest;
+import com.vsouza.processorders.dto.model.OrderResponse;
 import com.vsouza.processorders.dto.model.UserOrder;
+import com.vsouza.processorders.dto.model.UserOrderResponse;
 import com.vsouza.processorders.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,10 +19,16 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    @GetMapping("/read")
-    public ResponseEntity getRecords(){
-        orderService.readOrdersFromFile("src/main/resources/data/data_1.txt");
-        return ResponseEntity.ok().build();
+    @PostMapping("/filter")
+    public ResponseEntity<List<UserOrderResponse>> getOrders(@RequestBody FilterOrdersRequest request) {
+        List<UserOrderResponse> orderList = orderService.getUserOrders(request);
+        return ResponseEntity.ok(orderList);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable long id) {
+        OrderResponse orderResponse = orderService.getOrderResponse(id);
+        return ResponseEntity.ok(orderResponse);
     }
 
 
