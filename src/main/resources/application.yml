@@ -24,3 +24,12 @@ spring:
 
 server:
   port: 8088
+
+springdoc:
+  api-docs:
+    path: /api/documentation
+  swagger-ui:
+    path: /swagger-ui.html
+    enable: true
+  show-actuator: true
+  packages-to-scan: com.vsouza.processorders.controllers

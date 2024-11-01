@@ -1,4 +1,4 @@
-package com.vsouza.processorders.dto.model;
+package com.vsouza.processorders.dto.response;
 
 import lombok.Data;
 

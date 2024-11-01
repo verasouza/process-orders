@@ -1,9 +1,8 @@
 package com.vsouza.processorders.controllers;
 
-import com.vsouza.processorders.dto.model.FilterOrdersRequest;
-import com.vsouza.processorders.dto.model.OrderResponse;
-import com.vsouza.processorders.dto.model.UserOrder;
-import com.vsouza.processorders.dto.model.UserOrderResponse;
+import com.vsouza.processorders.dto.request.FilterOrdersRequest;
+import com.vsouza.processorders.dto.response.OrderResponse;
+import com.vsouza.processorders.dto.response.UserOrderResponse;
 import com.vsouza.processorders.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.vsouza.processorders.service;
 
-import com.vsouza.processorders.dto.entities.User;
-import com.vsouza.processorders.dto.mappers.UserMapper;
-import com.vsouza.processorders.dto.model.FileRequest;
-import com.vsouza.processorders.dto.model.UserOrderResponse;
+import com.vsouza.processorders.entities.User;
+import com.vsouza.processorders.mappers.UserMapper;
+import com.vsouza.processorders.dto.request.OrderFileRequest;
+import com.vsouza.processorders.dto.response.UserOrderResponse;
 import com.vsouza.processorders.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserService {
 		return userMapper.userToUserOrderResponse(user);
 	}
 
-	public User processUser(FileRequest orderData) {
+	public User processUser(OrderFileRequest orderData) {
 		return userRepository.findById(orderData.getUserId())
 				.orElseGet(() -> {
 					User newUser = User.builder()

@@ -1,13 +1,14 @@
-package com.vsouza.processorders.repositories;
+package com.vsouza.processorders.repositories.impl;
 
-import com.vsouza.processorders.dto.entities.Order;
-import com.vsouza.processorders.dto.entities.OrderProduct;
-import com.vsouza.processorders.dto.entities.Product;
-import com.vsouza.processorders.dto.entities.User;
-import com.vsouza.processorders.dto.model.FilterOrdersRequest;
-import com.vsouza.processorders.dto.model.OrderResponse;
-import com.vsouza.processorders.dto.model.ProductResponse;
-import com.vsouza.processorders.dto.model.UserOrderResponse;
+import com.vsouza.processorders.entities.Order;
+import com.vsouza.processorders.entities.OrderProduct;
+import com.vsouza.processorders.entities.Product;
+import com.vsouza.processorders.entities.User;
+import com.vsouza.processorders.dto.request.FilterOrdersRequest;
+import com.vsouza.processorders.dto.response.OrderResponse;
+import com.vsouza.processorders.dto.response.ProductResponse;
+import com.vsouza.processorders.dto.response.UserOrderResponse;
+import com.vsouza.processorders.repositories.OrderRepositoryCustom;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
@@ -15,6 +16,7 @@ import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,8 +26,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class OrderRepositoryImpl implements IOrderRepository {
+public class OrderRepositoryCustomImpl implements OrderRepositoryCustom {
 
 
 	final EntityManager entityManager;
@@ -67,7 +70,7 @@ public class OrderRepositoryImpl implements IOrderRepository {
 	private Predicate[] filter(FilterOrdersRequest filterOrdersRequest, CriteriaBuilder criteriaBuilder, Root<User> root) {
 		List<Predicate> predicates = new ArrayList<>();
 		Path<Order> orderPath = root.get("orders");
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		if (filterOrdersRequest.getOrderId() != null) {
 			predicates.add(criteriaBuilder.in(orderPath.get("id")).value(filterOrdersRequest.getOrderId()));

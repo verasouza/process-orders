@@ -1,15 +1,16 @@
 package com.vsouza.processorders.service;
 
-import com.vsouza.processorders.dto.entities.Product;
-import com.vsouza.processorders.dto.mappers.ProductMapper;
-import com.vsouza.processorders.dto.model.FileRequest;
-import com.vsouza.processorders.dto.model.ProductResponse;
+import com.vsouza.processorders.entities.Product;
+import com.vsouza.processorders.mappers.ProductMapper;
+import com.vsouza.processorders.dto.request.OrderFileRequest;
+import com.vsouza.processorders.dto.response.ProductResponse;
 import com.vsouza.processorders.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -23,22 +24,7 @@ public class ProductService {
 		return productRepository.findById(id).orElseThrow();
 	}
 
-	public ProductResponse getProductResponseById(Long id) {
-		Product product = getProductById(id);
-		return productMapper.toProductResponse(product);
-
-	}
-
-	public List<ProductResponse> getProductResponseList() {
-		List<Product> products = productRepository.findAll();
-		List<ProductResponse> productResponses = new ArrayList<>();
-		for (Product product : products) {
-			productResponses.add(productMapper.toProductResponse(product));
-		}
-		return productResponses;
-	}
-
-	public Product processProduct(FileRequest orderData) {
+	public Product processProduct(OrderFileRequest orderData) {
 		return productRepository.findById(orderData.getProductId())
 				.orElseGet(() -> {
 					Product newProduct = new Product();
@@ -49,13 +35,6 @@ public class ProductService {
 				});
 	}
 
-	public List<ProductResponse> productResponses(List<Product> products) {
-		List<ProductResponse> productResponses = new ArrayList<>();
-		for (Product product : products) {
-			productResponses.add(productMapper.toProductResponse(product));
-		}
-		return productResponses;
-	}
 }
 
 

@@ -1,10 +1,7 @@
-package com.vsouza.processorders.dto.entities;
+package com.vsouza.processorders.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
+import lombok.*;
 
 @Data @NoArgsConstructor
 @Entity
@@ -26,9 +23,6 @@ public class OrderProduct {
 
     public OrderProduct(Order order, Product product) {
         this.order = order;
-        this.order.setTotal(new BigDecimal("0.00"));
         this.product = product;
-        BigDecimal totalPrice = order.getTotal().add(product.getProductPrice());
-        this.order.setTotal(totalPrice);
     }
 }

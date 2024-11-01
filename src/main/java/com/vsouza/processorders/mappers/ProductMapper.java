@@ -1,7 +1,7 @@
-package com.vsouza.processorders.dto.mappers;
+package com.vsouza.processorders.mappers;
 
-import com.vsouza.processorders.dto.entities.Product;
-import com.vsouza.processorders.dto.model.ProductResponse;
+import com.vsouza.processorders.entities.Product;
+import com.vsouza.processorders.dto.response.ProductResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

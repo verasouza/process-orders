@@ -1,6 +1,6 @@
 package com.vsouza.processorders.controllers;
 
-import com.vsouza.processorders.service.ProcessOrderFiles;
+import com.vsouza.processorders.service.impl.OrderProcessingFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/files")
 public class ProcessFileController {
 
-    final ProcessOrderFiles processOrderFiles;
+    final OrderProcessingFacade orderProcessingFacade;
 
 
     @PostMapping("/upload")
     public ResponseEntity processFile(@RequestParam("file") MultipartFile file) {
-        processOrderFiles.processFile(file);
+        orderProcessingFacade.processFileAndSaveOrders(file);
         return ResponseEntity.ok().build();
     }
 
