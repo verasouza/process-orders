@@ -48,7 +48,7 @@
 --cookie JSESSIONID=0125342ECEDC59698711B53B6DBBB75A \
 --form 'file=@data_1.txt'
  ```
-- o arquivos é processado e salvo no banco para consultas futuras;
+- o arquivo é processado e salvo no banco para consultas futuras;
 - é possível fazer uma consulta usando os seguintes filtros:
 ``` json
 {
@@ -61,3 +61,6 @@
 ```
 - endpoint de consulta: http://localhost:8088/orders/filter
 - swagger: http://localhost:8088/swagger-ui/index.html
+
+  ### Rodar a aplicação
+  ``./build.sh``
