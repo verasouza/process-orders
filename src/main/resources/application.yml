@@ -6,11 +6,30 @@ spring:
     username: admin
     password: admin
     driver-class-name: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: HikariPool-1
+
+
   h2:
     console:
       enabled: true
+  jpa:
+    properties:
+      hibernate:
+        connection:
+          isolation: 2
 
 server:
   port: 8088
+
+springdoc:
+  api-docs:
+    path: /api/documentation
+  swagger-ui:
+    path: /swagger-ui.html
+    enable: true
+  show-actuator: true
+  packages-to-scan: com.vsouza.processorders.controllers

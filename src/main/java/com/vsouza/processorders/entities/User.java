@@ -1,4 +1,4 @@
-package com.vsouza.processorders.dto.entities;
+package com.vsouza.processorders.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

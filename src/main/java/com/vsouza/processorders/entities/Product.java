@@ -1,17 +1,16 @@
-package com.vsouza.processorders.dto.entities;
+package com.vsouza.processorders.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder @AllArgsConstructor @NoArgsConstructor
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -25,5 +24,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProduct> orderProducts = new ArrayList<>();
+
+    void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+    }
 
 }
