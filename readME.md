@@ -64,3 +64,14 @@
 
   ### Rodar a aplicação
   ``./build.sh``
+
+  ### Tecnologias
+  - Java 17
+  - Spring
+  - Junit e Mockito
+  - H2 Database
+ 
+    ### Sistema pensado
+    ![image](https://github.com/user-attachments/assets/036c9fb0-4dfe-40fe-a2a7-92f4838d81c7)
+
+    
